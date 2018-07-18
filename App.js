@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import {AppRegistry, Image, View} from "react-native";
-import Icon from "expo/src/Icon";
+import {AppRegistry, View} from "react-native";
+// import * as Alert from "react-native";
+// import {createStackNavigator} from 'react-navigation';
+// import Icon from "expo/src/Icon";
 // import RetroMapStyles from './MapStyles/RetroMapStyles.json'
 
 class Map extends Component {
@@ -15,8 +17,8 @@ class Map extends Component {
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
             },
-            markers: [
-            ],
+            // markers: [
+            // ],
         };
     }
 
@@ -24,21 +26,16 @@ class Map extends Component {
         this.setState({ region });
     };
 
-    // onMapPress = (e) => {
-    //     this.setState({
-    //         markers: [
-    //             ...this.state.markers,
-    //             {
-    //                 coordinate: e.nativeEvent.coordinate,
-    //                 key: `marker_${this.state.markers.length}`,
-    //             },
-    //         ],
-    //     });
+    // onMapPress = () => {
+    //     Alert.alert('Ты нажал на карту')
     // };
 
     render() {
         return (
             <View>
+                {/*<View style={styles.map_input_view}>*/}
+                    {/*<TextInput style={styles.map_input}/>*/}
+                {/*</View>*/}
                 <MapView
                     provider={ PROVIDER_GOOGLE }
                     style={styles.map_container}
@@ -46,11 +43,10 @@ class Map extends Component {
                     onRegionChange={this.onRegionChange}
                     // onPress={this.onMapPress}
                 >
-
-                        <MapView.Marker
-                            coordinate={this.state.region}
-                            // key={1}
-                        />
+                    <MapView.Marker
+                        coordinate={this.state.region}
+                        key={1}
+                    />
                     {/*<Icon name="map-marker"*/}
                           {/*style={{*/}
                               {/*zIndex: 3,*/}
@@ -61,7 +57,6 @@ class Map extends Component {
                               {/*top: '50%'}}*/}
                           {/*size={40}*/}
                           {/*color="#f00" />*/}
-                    {/*<Image source={require('./imagies/icon/map_marker.png')} style={styles.marker_icon}/>*/}
                 </MapView>
             </View>
         );
@@ -74,6 +69,21 @@ const styles = {
         height: '100%',
         width: '100%'
     },
+    map_input_view: {
+        flex: 1,
+        backgroundColor: 'transparent',
+        position: 'absolute',
+        top: 0,
+        height: '20%'
+    },
+    map_input: {
+        // flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.4)',
+        color: 'white',
+        height: '100%'
+        // position: 'absolute',
+        // top: 0,
+    }
 };
 
 export default Map;
